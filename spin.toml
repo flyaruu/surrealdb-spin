@@ -1,0 +1,17 @@
+spin_manifest_version = "1"
+authors = ["Frank Lyaruu <f.lyaruu@quin.nl>"]
+description = "Surreal DB example for spin"
+name = "surrealdb-spin"
+trigger = { type = "http", base = "/" }
+version = "0.1.0"
+
+[[component]]
+id = "surrealdb-spin"
+source = "target/wasm32-wasi/release/surrealdb_spin.wasm"
+allowed_http_hosts = ["localhost:8000"]
+
+[component.trigger]
+route = "/actor/..."
+[component.build]
+command = "cargo build --target wasm32-wasi --release"
+watch = ["src/**/*.rs", "Cargo.toml"]
